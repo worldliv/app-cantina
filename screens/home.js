@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, Alert, StyleSheet, TouchableOpacity } from 'react-native';
 
@@ -14,27 +15,33 @@ function Card() {
 //"cardTitle" e "cardContent"
     <TouchableOpacity onPress={() => efetuarPagamento('')}>
 {/*Com o TouchableOpacity iremos*/}
+=======
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+
+export default function Card() {
+    return (
+>>>>>>> 55bd8bd2c6ae63c6a34c57a0e3c85425c7b6a340
         <View style={styles.card}>
             <Text style={styles.cardTitle}>Título Card</Text>
             <Text style={styles.cardContent}>Conteúdo Card</Text>
         </View>
+<<<<<<< HEAD
     </TouchableOpacity>
     ) 
+=======
+    );
+>>>>>>> 55bd8bd2c6ae63c6a34c57a0e3c85425c7b6a340
 }
-//A partir daqui, se inicia a estilização de nossos componentes.
-StyleSheet.create({
+
+const styles = StyleSheet.create({
     card: {
         backgroundColor: 'purple',
         borderRadius: 4,
         padding: 12,
-        //Margem no eixo Y
         marginVertical: 8,
-        //Sombreamento no *Android
-        elevation:5,
-
     },
     cardTitle: {
+        fontSize: 20,
     },
-    cardContent: {
-    },
-})
+});

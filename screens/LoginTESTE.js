@@ -1,17 +1,41 @@
-import { View, Text,TouchableOpacity, styles } from "react-native"
-
-
-
-export default  function LoginTeste() {
+import { View, Text,TouchableOpacity, StyleSheet, TextInput, } from "react-native";
+import { useState } from "react";
+export default  function LoginTeste({ navigation }) {
+  const [senha, setSenha]= useState()
     return (
-           <View style={styles.container}>
-             <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
-                <Text>Senha</Text>
-              </TouchableOpacity>
+        <View style={styles.container}>
 
-              <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
+           <TextInput style={styles.input}
+           placeholder="senha"
+           value= {senha}
+           onChangeText={setSenha}
+           >
+           </TextInput>
+            <TouchableOpacity 
+                style={styles.button}
+                onPress={() => navigation.navigate("home")}
+               
+              
+            >   
                 <Text>Entrar</Text>
-              </TouchableOpacity>
+            </TouchableOpacity>
+            <Text> senha:  {senha} </Text>
+
         </View>
-    )
+    );
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button:{
+    padding: 10,
+    marginVertical: 5
+  },
+  input: {
+    borderWidth: 1
+  }
+});
