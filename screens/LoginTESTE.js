@@ -12,6 +12,14 @@ export default  function LoginTeste() {
               <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
                 <Text>Entrar</Text>
               </TouchableOpacity>
+           <View style={styles.container}>
+             <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
+                <Text>Senha</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
+                <Text>Entrar</Text>
+              </TouchableOpacity>
         </View>
     )
 }
