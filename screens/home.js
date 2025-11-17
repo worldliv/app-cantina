@@ -1,34 +1,23 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, Alert, StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
-//Aqui iniciaremos criando nossos cards, onde estará sendo exibida nossa alimentação.
-//Através dos Cards, informações estarão contidas ao clicar no mesmo.
-
-function Card() {
+export default function Card() {
     return (
-//Nessa espécie de "DIV" estaremos adicionando os componentes de nossa Página Inicial.
-//"Card" será o espaço reservado para a amostra de produtos (alimentos).
-//"cardTitle" e "cardContent"
         <View style={styles.card}>
             <Text style={styles.cardTitle}>Título Card</Text>
             <Text style={styles.cardContent}>Conteúdo Card</Text>
         </View>
-    ) 
+    );
 }
-//A partir daqui, se inicia a estilização de nossos componentes.
-StyleSheet.create({
+
+const styles = StyleSheet.create({
     card: {
         backgroundColor: 'purple',
         borderRadius: 4,
         padding: 12,
-        //Margem no eixo Y
         marginVertical: 8,
-        //Sombreamento no *Android
-        elevation:5,
-
     },
     cardTitle: {
+        fontSize: 20,
     },
-    cardContent: {
-    },
-})
+});
