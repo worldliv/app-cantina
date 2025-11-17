@@ -1,6 +1,8 @@
 import { View, Button, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import LoginTeste from './LoginTESTE';
-export default function Tela1( { navigation}) {
+export default function Tela1( {navigation}) {
+//O navigation.navigate envia para as telas. No TouchableOpacity quando clicado, será direcionado com o navigate para a tela.
+//é importante salientar que as nomenclaturas devem estar de acordo para que se faça possível a navegação.
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
