@@ -23,7 +23,7 @@ const criarTab = () => {
 export default function App() {
   return (
 <NavigationContainer>
-  <Stack.Navigator>
+  <Stack.Navigator screenOptions={{headerShown:false}}>
     <Stack.Screen  name="tela1" component={tela1}/>
     <Stack.Screen  name="Login" component={LoginTeste}/>
   </Stack.Navigator>

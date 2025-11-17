@@ -1,13 +1,23 @@
-import { View, Text, } from "react-native"
+import { View, Text,TouchableOpacity, StyleSheet} from "react-native"
 
 
 
 export default  function LoginTeste() {
     return (
-        <View>
-            <Text>
-                Tela de login
-            </Text>
+           <View style={styles.container}>
+             <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
+                <Text>Senha</Text>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate("Login")}>
+                <Text>Entrar</Text>
+              </TouchableOpacity>
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1
+  }
+});
