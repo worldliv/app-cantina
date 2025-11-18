@@ -1,7 +1,17 @@
-import { View, Text,TouchableOpacity, StyleSheet, TextInput, } from "react-native";
+import { View, Text,TouchableOpacity, StyleSheet, TextInput,} from "react-native";
 import { useState } from "react";
 export default  function LoginTeste({ navigation }) {
   const [senha, setSenha]= useState()
+    const [senhaIncorreta, setSenhaIncorreta] = useState(false)
+  const verificarSenha = () =>  {
+    if (!senha) {
+      setSenhaIncorreta(true)
+      return;
+    } else {
+      navigation.navigate("home2")
+    }
+  }
+
     return (
         <View style={styles.container}>
 
@@ -13,13 +23,12 @@ export default  function LoginTeste({ navigation }) {
            </TextInput>
             <TouchableOpacity 
                 style={styles.button}
-                onPress={() => navigation.navigate("home")}
-               
+               onPress={() => verificarSenha()}
               
             >   
                 <Text>Entrar</Text>
             </TouchableOpacity>
-            <Text> senha:  {senha} </Text>
+
 
         </View>
     );
@@ -29,13 +38,20 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    backgroundColor: '#efe9fa',
   },
+
   button:{
+    padding: 15,
+    marginVertical: 5,
+    backgroundColor: '#5d10b0',
     padding: 10,
-    marginVertical: 5
+    borderRadius: 35,
   },
+
   input: {
-    borderWidth: 1
-  }
+    borderWidth: 1,
+    borderColor: "gray"
+  },
 });
