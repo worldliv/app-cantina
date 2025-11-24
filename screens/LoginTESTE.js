@@ -8,7 +8,7 @@ export default  function LoginTeste({ navigation }) {
       setSenhaIncorreta(true)
       return;
     } else {
-      navigation.navigate("home2")
+      navigation.navigate("home")
     }
   }
 
