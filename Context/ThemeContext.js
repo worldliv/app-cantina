@@ -1,50 +1,45 @@
-// src/context/ThemeContext.js
-// Contexto responsável por gerenciar e persistir o tema (claro / escuro).
+import { createContext, useContext, useEffect, useMemo, useState } from "react"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+const ThemeContext = createContext({});
 
-import React, { createContext, useContext, useEffect, useState } from 'react'; // hooks necessários
-import AsyncStorage from '@react-native-async-storage/async-storage'; // armazenamento local
 
-const KEY = '@cantina_theme_v1'; // chave usada no AsyncStorage para gravar o tema
-
-const ThemeContext = createContext(); // cria o contexto
-
-export function ThemeProvider({ children }) {
-  const [isDark, setIsDark] = useState(false); // estado que guarda se o tema é escuro
+export const ThemeProvider = ({ children }) => {
+  const [isModoEscuro, setIsModoEscuro] = useState(false);
 
   useEffect(() => {
-    // Ao montar, tentamos carregar o valor salvo do AsyncStorage
-    (async () => {
+    const carregarTema = async () => {
       try {
-        const raw = await AsyncStorage.getItem(KEY); // lê a chave
-        if (raw !== null) setIsDark(JSON.parse(raw)); // se existir, atualiza o estado
-      } catch (e) {
-        console.error('Erro ao carregar tema', e); // log em caso de falha
+        const temaSalvo = await AsyncStorage.getItem("tema");
+        if (temaSalvo !== null) {
+          setIsModoEscuro(temaSalvo === "escuro");
+        }
+      } catch (error) {
+        console.log("Erro ao carregar tema:", error);
       }
-    })();
-  }, []); // array vazio -> roda só na montagem do componente
+    };
 
-  useEffect(() => {
-    // Sempre que isDark mudar, persistimos o novo valor
-    (async () => {
-      try {
-        await AsyncStorage.setItem(KEY, JSON.stringify(isDark)); // grava como string
-      } catch (e) {
-        console.error('Erro ao salvar tema', e); // log em caso de erro
-      }
-    })();
-  }, [isDark]); // dispara quando isDark for alterado
-
-  const toggle = () => setIsDark(v => !v); // função que alterna o tema
-
-  // Provider disponibiliza isDark e toggle para os filhos
+    carregarTema();
+  }, []);
+  const TrocarTheme = () => {
+    setIsModoEscuro((prevState) => !prevState);
+    AsyncStorage.setItem("tema", !isModoEscuro ? "escuro" : "claro");
+  };
+ 
+  const tema = useMemo(() => {
+    return { 
+      // mudar  cores
+      background: isModoEscuro ? "#121212" : "#EDEDED",
+      texto: isModoEscuro ? "#EDEDED" : "#121212",
+      textoAtivo: isModoEscuro ? "#869cfcff" : "#314096ff",
+      cardBackground: isModoEscuro ? "#000000" : "#FFFFFF",
+      borda: isModoEscuro ? "#ccc4" : "#080808",
+    };
+  }, [isModoEscuro]);
   return (
-    <ThemeContext.Provider value={{ isDark, toggle }}>
+    <ThemeContext.Provider value={{ isModoEscuro, TrocarTheme, tema }}>
       {children}
     </ThemeContext.Provider>
   );
-}
+};
 
-// Hook personalizado para consumir o contexto com mais conforto
-export function useTheme() {
-  return useContext(ThemeContext);
-}
+export const usarTheme = () => useContext(ThemeContext);
