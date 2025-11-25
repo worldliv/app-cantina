@@ -1,3 +1,33 @@
+// App.js
+import React from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
+import { ProdutosContext, ProdutosProvider } from "./Context/ProdutoContext";
+
+import Tela1 from "./screens/tela1";
+import LoginTeste from "./screens/LoginTESTE";
+import Card from "./screens/home";
+import HomesoqMelhor from "./screens/HomesoqMelhor";
+const Stack = createStackNavigator();
+
+export default function App() {
+  return (
+    <ProdutosProvider>
+      <NavigationContainer>
+        <Stack.Navigator screenOptions={{ headerShown: false }}>
+          
+          <Stack.Screen name="tela1" component={Tela1} />
+          <Stack.Screen name="Login" component={LoginTeste} />
+          <Stack.Screen name="home" component={Card} />
+          <Stack.Screen name="home2" component={HomesoqMelhor} />
+          
+        </Stack.Navigator>
+      </NavigationContainer>
+    </ProdutosProvider>
+  );
+}
+
 //Modificações Valenthini
 
 // App.js
@@ -12,15 +42,16 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Import das telas (cada tela em src/screens)
-import MenuScreen from './screens/MenuScreen';
-import CartItem from './screens/CartItem';
-import PaymentScreen from './screens/PaymentScreen';
-import OrderSucessScreen from './screens/OrderSucessScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import AdminScreen from './screens/AdminScreen';
+import MenuScreen from './src/screens/MenuScreen';
+import CartScreen from './src/screens/CartScreen';
+import PaymentScreen from './src/screens/PaymentScreen';
+import OrderSuccessScreen from './src/screens/OrderSuccessScreen';
+import HistoryScreen from './src/screens/HistoryScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
+import AdminScreen from './src/screens/AdminScreen';
 
 // Import do contexto de tema (fornece isDark e toggle)
-import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './src/context/ThemeContext';
 
 // Criação dos criadores de navegação
 const Stack = createNativeStackNavigator(); // navigator para fluxo principal (pilha)
@@ -39,6 +70,8 @@ function MainStack() {
       <Stack.Screen name="Payment" component={PaymentScreen} options={{ title: 'Pagamento' }} />
       {/* Tela de confirmação — é apresentada como modal (aparece sobre a pilha) */}
       <Stack.Screen name="OrderSuccess" component={OrderSuccessScreen} options={{ title: 'Pedido Confirmado', presentation: 'modal' }} />
+      {/* Tela de Histórico */}
+      <Stack.Screen name="History" component={HistoryScreen} options={{ title: 'Histórico' }} />
     </Stack.Navigator>
   );
 }
